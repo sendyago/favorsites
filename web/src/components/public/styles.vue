@@ -1,0 +1,42 @@
+<script>
+    const searchDivStyle=['', 'background-color:rgb(31, 34, 35);border-bottom-color:rgb(59, 65, 67);box-shadow:rgb(43 47 48) 0px 1px 2px;'], 
+        searchTypeStyle=['', 'background-color:rgb(23, 25, 26);border-left-color:rgb(59, 65, 67);border-top-color:rgb(59, 65, 67);border-bottom-color:rgb(59, 65, 67);'],
+        searchInputStyle=[{},{borderTopColor:'rgb(59, 65, 67)',borderBottomColor:'rgb(59, 65, 67)',backgroundColor:'#17191a',color:'rgb(155, 147, 136)'}],
+        searchBtnStyle=['', 'background-color:rgb(23, 25, 26);border-right-color:rgb(59, 65, 67);border-top-color:rgb(59, 65, 67);border-bottom-color:rgb(59, 65, 67);'],
+        searchTypeBoxStyle=['', 'background-color:rgb(23, 25, 26);border-color:rgb(59, 65, 67);color:rgb(155, 147, 136);box-shadow:rgb(63 67 70) 1px 1px 8px;'],
+        searchTypeBtnStyle=['', 'background-color:rgb(23, 25, 26);'],
+        homeBtn1Style=['', 'background-color:rgb(23, 25, 26);border-color:rgb(59, 65, 67);color:rgb(155, 147, 136);'],
+        c183Style=['', 'color:rgb(196, 192, 185);'],
+        weekHotTitleStyle=['', 'border-bottom-color:rgb(59, 65, 67);'],
+        editBtnBoxStyle=['', 'border-color:rgb(55, 60, 63);background-color:rgb(23, 25, 26);'],
+        editBtnStyle=['', 'color:rgb(196, 192, 185);background-color:rgb(23, 25, 26);'],
+        editBtnStyle1=['', 'color:rgb(196, 192, 185);background-color:rgb(31, 34, 35);'],
+        categoryLine3Style=['', 'background-color:rgb(31, 34, 35);'],
+        ahoveBlueAStyle=['', 'color:rgb(196, 192, 185);'],
+        urlNameStyle=['', 'color:rgb(196, 192, 185);'],
+        loginBoxStyle=['', 'background-color:rgb(23, 25, 26);border-color:rgb(57, 62, 64);'],
+        footerBottomBlockStyle=['', 'background-color:rgb(31, 34, 35);color:rgb(158, 151, 140);'],
+        categoryBoxColor=[['','rgb(40, 128, 204)'],['rgb(196, 192, 185)','#2880cc']],
+        addCategeryBoxStyle=['', 'background-color:rgb(23, 25, 26);'],
+        addCatogeryListStyle=['', 'color:rgb(196, 192, 185);'],
+        boxNameInputStyle=['', 'background-color:#17191a;color:rgb(184, 180, 172);border-color:rgb(57, 62, 64);'],
+        editCancelStyle=['', 'color:rgb(196, 192, 185);'],
+        bottomLine=['', 'border-bottom-color:rgb(52, 57, 59);'],
+        msgBgColorStyle=['', 'background-color:rgb(32 32 32);'],
+        bbe5Style=['','border-bottom-color:rgb(52, 57, 59);'],
+        addPhotoOrStyle=['', 'background-color:rgb(23, 25, 26);color:#dcdbd8;'],
+        inputTextStyle=['', 'background-color:#17191a;color:#dcdbd8;border-color:rgb(70, 76, 79);'],
+        newAuthcodeStyle=['', 'color:#308af2;'],
+        signupBtnStyle=['', 'color:#dcdbd8;'],
+        toSignInStyle=['','color:#dcdbd8'],
+        categoryTypeNameStyle=['#183a3a', 'rgb(196, 192, 185)'],
+        categoryTypeIconStyle=['', 'rgb(31, 34, 35)']
+
+    export default {
+        searchDivStyle, searchTypeStyle, searchInputStyle, searchBtnStyle, searchTypeBoxStyle, searchTypeBtnStyle,
+        homeBtn1Style, c183Style, weekHotTitleStyle, editBtnBoxStyle,categoryTypeNameStyle,categoryTypeIconStyle,
+        editBtnStyle, editBtnStyle1, categoryLine3Style, ahoveBlueAStyle, urlNameStyle, loginBoxStyle,footerBottomBlockStyle,
+        categoryBoxColor, addCategeryBoxStyle, addCatogeryListStyle, boxNameInputStyle, editCancelStyle, bottomLine,
+        msgBgColorStyle, bbe5Style, addPhotoOrStyle, inputTextStyle, newAuthcodeStyle, signupBtnStyle, toSignInStyle
+    }
+</script>
