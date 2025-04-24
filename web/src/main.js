@@ -13,15 +13,15 @@ import style_ from '@/components/public/styles.vue'
 Vue.prototype.LOCAL = local_
 Vue.prototype.STYLES = style_
 
-// new Vue({
-//   el: '#app',
-//   router,
-//   render: h => h(App)
-// }).$mount('#app')
-
 new Vue({
   el: '#app',
   router,
-  components: { App },
-  template: '<App/>'
-})
+  render: h => h(App)
+}).$mount('#app')
+
+// new Vue({
+//   el: '#app',
+//   router,
+//   components: { App },
+//   template: '<App/>'
+// })
