@@ -137,12 +137,15 @@
   </div>
 </template>
 <script>
+import { queryUserData } from '@/api/user/index.js'
+import { getCookie } from '@/utils/util'
+
 export default {
   data() {
     return {
       picture: '', // 用户头像
       theme: 0, // 当前主题，0白色/1黑色
-      themeType: 0, // 当前主题，0白色/1黑色/2自动
+      themeType: 2, // 当前主题，0白色/1黑色/2自动
       t: 0, // 语言：0中文，1英文
       userName: '',
       searchAreaBoxWidth: '100%',
@@ -173,6 +176,41 @@ export default {
       this.initUserInfo()
     },
     initUserInfo() {
+      // 首先就是获取cookie，从cookie中获取用户信息
+      let cookie = document.cookie
+      // 判断用户信息是否为空，如果为空，就表示用户还没登录，
+      // 不需要去查询后端接口，所有内容只需要默认即可
+      if (cookie != null && cookie != '') {
+      // 如果用户信息不为空，直接根据用户ID查询相关数据
+      // （语言、主题、用户信息（用户名、收藏夹及保存网站信息）等等）
+        const userId = getCookie('_UID')
+      }
+      // 执行查询用户信息
+      this.handleUserData(userId)
+    },
+    handleUserData(userId) {
+      if (userId != null && userId != '') {
+        // 根据用户id查询用户信息
+        queryUserData(userId).then(res => {
+          if (res.data != null) {
+            // todo 根据用户信息再初始化相关数据（语言、主题、搜索等等）
+
+            // todo 查询用户的收藏夹信息
+
+          } else {
+            // 用户信息是空，所有设置均为默认
+            this.showDefaultInfo()
+          }
+        })
+      } else {
+        // 用户id是空，所有设置均为默认
+        this.showDefaultInfo()
+      }
+    },
+    showDefaultInfo() {
+      // 语言是默认，比如显示中文
+      // 主题是默认，显示自动
+      // todo 收藏夹的展示信息也是默认
 
     },
     initLocale() {
@@ -267,6 +305,8 @@ export default {
       } else {
         this.t = 0
       }
+      // todo 如果是登录用户，需要将t值上传到服务端保存，下次用户登录后直接切换为用户的语言
+
     },
     showLogin() {
       // this.$refs.login.showLogin()
@@ -275,23 +315,29 @@ export default {
       // 先获取系统的时间
       const date = new Date()
       const nowTime = date.getHours()
-      // 判断当前时间，比如早6到晚6，使用亮色，否则就使用暗色
-      this.autoThemeTimer = setInterval(() => {
-        if (nowTime >= 6 && nowTime <= 18) {
-          // 将系统主题设置成亮色
-          setThemeLight()
-        } else {
-          // 将系统主题设置成暗色
-          setThemeDark()
-        }
-      }, 1000 * 60 * 10)
-      // clearInterval(this.autoThemeTimer)
+      if (this.themeType == 2) {
+        // 判断当前时间，比如早6到晚6，使用亮色，否则就使用暗色
+        this.autoThemeTimer = setInterval(() => {
+          if (nowTime >= 6 && nowTime <= 18) {
+            // 将系统主题设置成亮色
+            setThemeLight()
+          } else {
+            // 将系统主题设置成暗色
+            setThemeDark()
+          }
+        }, 1000 * 60 * 10)
+      } else if (this.themeType == 1) {
+        setThemeDark()
+      } else {
+        setThemeLight()
+      }
+      // todo clearInterval(this.autoThemeTimer)
     },
     setThemeLight() {
-      // 修改css样式
+      // todo 修改css样式
     },
     setThemeDark() {
-      // 修改css样式
+      // todo 修改css样式
     },
     showUpdate() {
       if (process.env.NODE_ENV === 'development') {
