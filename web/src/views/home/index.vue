@@ -138,7 +138,7 @@
 </template>
 <script>
 import { queryUserData } from '@/api/user/index.js'
-import { getCookie } from '@/utils/util'
+import { getCookie, setCookie } from '@/utils/util'
 
 export default {
   data() {
@@ -157,7 +157,8 @@ export default {
       searchInputWidth: '640px',
       showSearchType: false,
       showMark: true,
-      autoThemeTimer: null
+      autoThemeTimer: null,
+      userId: null
     }
   },
   created() {
@@ -168,6 +169,7 @@ export default {
   },
   methods: {
     initPage() {
+      setCookie("_UID", "1")
       // 设置语言
       this.initLocale()
       // 根据浏览器宽度自动调整显示内容
@@ -183,16 +185,17 @@ export default {
       if (cookie != null && cookie != '') {
       // 如果用户信息不为空，直接根据用户ID查询相关数据
       // （语言、主题、用户信息（用户名、收藏夹及保存网站信息）等等）
-        const userId = getCookie('_UID')
+        this.userId = getCookie('_UID')
       }
       // 执行查询用户信息
-      this.handleUserData(userId)
+      this.handleUserData(this.userId)
     },
     handleUserData(userId) {
       if (userId != null && userId != '') {
         // 根据用户id查询用户信息
         queryUserData(userId).then(res => {
           if (res.data != null) {
+            console.log(res.data)
             // todo 根据用户信息再初始化相关数据（语言、主题、搜索等等）
 
             // todo 查询用户的收藏夹信息

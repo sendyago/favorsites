@@ -1,0 +1,14 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: FAVORSITES
+  datasource:
+    url: jdbc:mysql://localhost:3306/favorsites?useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Root1231
+
+mybatis-plus:
+  mapperLocation: classpath:/mapper/**/*.xml
