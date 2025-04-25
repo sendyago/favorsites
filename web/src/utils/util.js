@@ -5,7 +5,7 @@ export function getCookie(key) {
             // a=1 b=2 c=3
             // a=1; b=2; c=3
             let cookieArr = cookie.split("; ")
-            for (let i = 1; i < cookieArr.length; i++) {
+            for (let i = 0; i < cookieArr.length; i++) {
                 if (cookieArr[i] != null && cookieArr[i] != '') {
                     let keyArr = cookieArr[i].split("=")
                     if (keyArr.length > 1 && keyArr[0] == key) {
