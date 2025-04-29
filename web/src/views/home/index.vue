@@ -2,7 +2,7 @@
   <div>
     <div class="pt-r" style="min-height: 85vh;">
       <div class="search-head">
-        <div class="search-div">
+        <div class="search-div" :style="this.STYLES.searchDivStyle[theme]">
           <div class="new-container header-container">
             <div>
               <div class="head-div m-l-20 f-l">
@@ -13,7 +13,8 @@
               </div>
               <div class="m-t-10 m-r-20 f-r pt-r d-f userinfo-box">
                 <div>
-                  <button type="button" class="home-btn1 m-r-10" @click="changeLanguage">{{ this.LOCAL.lbh[t] }}</button>
+                  <button type="button" class="home-btn1 m-r-10" @click="changeLanguage"
+                   :style="this.STYLES.homeBtn1Style[theme]">{{ this.LOCAL.lbh[t] }}</button>
                 </div>
                 <div v-if="userName != '' && picture != ''" @click="showUserBox = !showUserBox">
                   <img class="login-pic b-r-5" :src="picture" :title="userName" />
@@ -81,7 +82,7 @@
                   <span class="search-type-title">{{ searchNameArr[searchType] }}</span>
                 </button>
               </div>
-              <div><input type="text" class="search-input" id="searchInput" autocomplete="off" v-model="searchValue"
+              <div><input ref="searchInputRef" type="text" class="search-input" id="searchInput" autocomplete="off" v-model="searchValue"
                   :style="[this.STYLES.searchInputStyle[theme], { maxWidth: searchInputWidth }]" />
               </div>
               <div>
@@ -158,7 +159,8 @@ export default {
       showSearchType: false,
       showMark: true,
       autoThemeTimer: null,
-      userId: null
+      userId: null,
+      showUserBox: false
     }
   },
   created() {
@@ -197,9 +199,9 @@ export default {
           if (res.data != null) {
             console.log(res.data)
             // todo 根据用户信息再初始化相关数据（语言、主题、搜索等等）
-
+            this.refreshUserCustomData(res.data)
             // todo 查询用户的收藏夹信息
-
+            this.refreshUserFavoriteData()
           } else {
             // 用户信息是空，所有设置均为默认
             this.showDefaultInfo()
@@ -209,6 +211,19 @@ export default {
         // 用户id是空，所有设置均为默认
         this.showDefaultInfo()
       }
+    },
+    refreshUserCustomData(userData) {
+      this.searchType = userData.searchType
+      this.t = userData.localType
+      this.themeType = userData.themeType
+      this.autoTheme()
+      // 用户头像设置
+      this.picture = userData.headImgUrl
+      this.userName = userData.userName
+      console.log(this.themeType)
+    },
+    refreshUserFavoriteData() {
+
     },
     showDefaultInfo() {
       // 语言是默认，比如显示中文
@@ -330,17 +345,27 @@ export default {
           }
         }, 1000 * 60 * 10)
       } else if (this.themeType == 1) {
-        setThemeDark()
+        this.setThemeDark()
       } else {
-        setThemeLight()
+        this.setThemeLight()
       }
       // todo clearInterval(this.autoThemeTimer)
     },
     setThemeLight() {
       // todo 修改css样式
+      this.theme = 0
+      console.log(this.theme)
+      document.querySelector("html").setAttribute("style", "background-color:#ffffff;")
     },
     setThemeDark() {
       // todo 修改css样式
+      this.theme = 1
+      console.log(this.theme)
+      document.querySelector("html").setAttribute("style", "background-color:#17191a;")
+    },
+    changeTheme(themeVal) {
+      this.themeType = themeVal
+      this.autoTheme()
     },
     showUpdate() {
       if (process.env.NODE_ENV === 'development') {
@@ -356,6 +381,24 @@ export default {
           window.open("https://favorsites.com/update_en", "_blank");
         }
       }
+
+    },
+    changeType(searchVal) {
+      this.searchType = searchVal
+      this.$refs.searchInputRef.focus()
+      this.showSearchType = !this.showSearchType
+    },
+    search() {
+      let url = '';
+      if (this.searchType == '2') {
+        url = 'https://www.bing.com/search?q=' + this.searchValue
+      }
+      window.open(url, "_blank")
+    },
+    setPass() {
+
+    },
+    logout() {
 
     }
   },
