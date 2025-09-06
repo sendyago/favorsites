@@ -1,0 +1,10 @@
+*.class
+*.log
+target
+target/**
+target/classes/**
+.idea
+.idea/*
+target/classes/logback.xml
+target/classes/logback.xml
+.DS_Store
